@@ -2,14 +2,16 @@
 <html lang="en">
    <style>
         #imageContainer {
-            position: relative;
-        }
+    position: relative;
+    border: 2px solid #000; /* тут ви можете встановити стиль рамки */
+     /*padding: 1px; додайте відступ для зображення */
+    box-sizing: border-box+4px; /* враховуйте рамку у визначенні ширини і висоти */
+}
 
-        .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background-color: red;
+        .rectangle {
+            border: 2px solid #000; /* Задайте товщину та колір рамки */
+            border-radius: 5%;
+            background-color: rgba(255, 255, 255, 0.5); /* Задайте прозорість фону */
             position: absolute;
         }
     </style>
@@ -17,7 +19,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image Viewer</title>
-    <script src="main.js" defer></script>
+    <script src="main.js"></script>
 </head>
 <body>
     <h1>Image Viewer</h1>

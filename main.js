@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const imageInput = document.getElementById('imageInput');
     const imageContainer = document.getElementById('imageContainer');
     const coordinates = document.getElementById('coordinates');
-    let dot = null; 
+    let rectangle = null; 
 
     imageInput.addEventListener('change', function(event) {
         const file = event.target.files[0];
@@ -11,6 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
             reader.onload = function(e) {
                 const img = new Image();
                 img.onload = function() {
+                    // Встановлюємо розміри контейнера відповідно до розмірів зображення
+                    imageContainer.style.width = img.width + 'px';
+                    imageContainer.style.height = img.height + 'px';
+
+                    // Очищаємо вміст контейнера та додаємо зображення
                     imageContainer.innerHTML = '';
                     imageContainer.appendChild(img);
                 }
@@ -28,16 +33,18 @@ document.addEventListener('DOMContentLoaded', function() {
         const y = Math.max(0, event.pageY - imageY);
         coordinates.innerText = `X: ${x}, Y: ${y}`;
 
-        
-        if (dot) {
-            imageContainer.removeChild(dot);
+        if (rectangle) {
+            imageContainer.removeChild(rectangle);
         }
 
-        
-        dot = document.createElement('div');
-        dot.classList.add('dot');
-        dot.style.left = x + 'px';
-        dot.style.top = y + 'px';
-        imageContainer.appendChild(dot);
+        rectangle = document.createElement('div');
+        rectangle.classList.add('rectangle');
+        rectangle.style.left = x + 'px';
+        rectangle.style.top = y + 'px';
+        rectangle.style.width = '100px'; // Задайте бажану ширину прямокутника
+        rectangle.style.height = '40px';
+        rectangle.style.borderWidth = '2px';
+        rectangle.style.borderColor = 'red';
+        imageContainer.appendChild(rectangle);
     });
 });
